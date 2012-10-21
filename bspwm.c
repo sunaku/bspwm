@@ -53,6 +53,11 @@ void setup(void)
     screen_height = screen->height_in_pixels;
     root_depth = screen->root_depth;
 
+    uint32_t mask = XCB_CW_OVERRIDE_REDIRECT;
+    uint32_t values[] = {1};
+    cover = xcb_generate_id(dpy);
+    xcb_create_window(dpy, screen->root_depth, cover, screen->root, 0, 0, screen_width, screen_height, 0, XCB_WINDOW_CLASS_INPUT_ONLY, screen->root_visual, mask, values);
+
     xcb_atom_t net_atoms[] = {ewmh->_NET_SUPPORTED,
                               ewmh->_NET_DESKTOP_NAMES,
                               ewmh->_NET_NUMBER_OF_DESKTOPS,

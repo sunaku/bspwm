@@ -23,6 +23,7 @@ desktop_t *desk_head;
 desktop_t *desk_tail;
 rule_t *rule_head;
 pointer_state_t *frozen_pointer;
+xcb_window_t cover;
 
 bool running;
 

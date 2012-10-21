@@ -4,6 +4,7 @@
 #include <string.h>
 #include <xcb/xcb.h>
 #include <xcb/xcb_event.h>
+#include <xcb/xcb_aux.h>
 #include "types.h"
 #include "tree.h"
 #include "bspwm.h"
@@ -253,6 +254,18 @@ uint32_t get_main_border_color(client_t *c, bool focused)
         else
             return normal_border_color_pxl;
     }
+}
+
+void cover_show(void)
+{
+    xcb_map_window(dpy, cover);
+    xcb_aux_sync(dpy);
+}
+
+void cover_hide(void)
+{
+    xcb_aux_sync(dpy);
+    xcb_unmap_window(dpy, cover);
 }
 
 void update_floating_rectangle(client_t *c)
