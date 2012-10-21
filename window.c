@@ -256,16 +256,18 @@ uint32_t get_main_border_color(client_t *c, bool focused)
     }
 }
 
-void cover_show(void)
+void blanket_show(void)
 {
-    xcb_map_window(dpy, cover);
+    xcb_aux_sync(dpy);
+    xcb_map_window(dpy, blanket);
     xcb_aux_sync(dpy);
 }
 
-void cover_hide(void)
+void blanket_hide(void)
 {
     xcb_aux_sync(dpy);
-    xcb_unmap_window(dpy, cover);
+    xcb_unmap_window(dpy, blanket);
+    xcb_aux_sync(dpy);
 }
 
 void update_floating_rectangle(client_t *c)

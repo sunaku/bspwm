@@ -55,8 +55,8 @@ void setup(void)
 
     uint32_t mask = XCB_CW_OVERRIDE_REDIRECT;
     uint32_t values[] = {1};
-    cover = xcb_generate_id(dpy);
-    xcb_create_window(dpy, screen->root_depth, cover, screen->root, 0, 0, screen_width, screen_height, 0, XCB_WINDOW_CLASS_INPUT_ONLY, screen->root_visual, mask, values);
+    blanket = xcb_generate_id(dpy);
+    xcb_create_window(dpy, XCB_COPY_FROM_PARENT, blanket, screen->root, 0, 0, screen_width, screen_height, 0, XCB_WINDOW_CLASS_INPUT_OUTPUT, XCB_COPY_FROM_PARENT, mask, values);
 
     xcb_atom_t net_atoms[] = {ewmh->_NET_SUPPORTED,
                               ewmh->_NET_DESKTOP_NAMES,

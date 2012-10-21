@@ -108,7 +108,7 @@ void map_request(xcb_generic_event_t *evt)
 
     c->transient = transient;
 
-    cover_show();
+    blanket_show();
 
     if (takes_focus)
         focus_node(desk, birth, false);
@@ -117,7 +117,7 @@ void map_request(xcb_generic_event_t *evt)
 
     window_show(c->window);
 
-    cover_hide();
+    blanket_hide();
 
     if (takes_focus)
         xcb_set_input_focus(dpy, XCB_INPUT_FOCUS_POINTER_ROOT, win, XCB_CURRENT_TIME);
